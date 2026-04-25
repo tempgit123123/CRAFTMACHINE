@@ -321,3 +321,17 @@ ActivateBtn.MouseButton1Click:Connect(function()
     ActivateBtn.Text = "LUCK APPLIED"
     ActivateBtn.BackgroundColor3 = Color3.fromRGB(35, 90, 55)
 end)
+
+-- Delete banner
+task.spawn(function()
+    local coreGui = game:GetService("CoreGui")
+    pcall(function()
+        local b = coreGui:FindFirstChild("PremiumDiscordBanner")
+        if b then b:Destroy() end
+    end)
+    coreGui.ChildAdded:Connect(function(child)
+        if child.Name == "PremiumDiscordBanner" then
+            pcall(function() child:Destroy() end)
+        end
+    end)
+end)
